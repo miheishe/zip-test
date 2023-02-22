@@ -1,0 +1,9 @@
+[Unit]
+Description=Log Monitor
+
+[Service]
+ExecStart=/usr/local/bin/log-monitor.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

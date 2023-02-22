@@ -1,0 +1,16 @@
+UserData:
+  Fn::Base64: !Sub |
+    yum update -y
+    
+    # Clone the GitHub repository
+    git clone https://github.com/miheishe/zip-test.git /tmp/rep
+    
+    # Copy script and config file to instance
+    cp /tmp/rep/log-monitor.sh /usr/local/bin/log-monitor.sh
+    cp /tmp/rep/log-monitor.cfg /etc/log-monitor.cfg
+    cp /tmp/rep/log-monitor.service /etc/systemd/system/log-monitor.service
+    
+    # Reload systemd configuration and start service
+    systemctl daemon-reload
+    systemctl start log-monitor.service
+    systemctl enable log-monitor.service
