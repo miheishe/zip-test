@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # Read configuration file
-source config.cfg
+source log-monitor.cfg
+
+# Check if argument is provided
+if [ -n "$1" ]
+then
+    LOGFILE="$1"
+fi
 
 # Parse log file for specified string
 tail -n0 -F $LOGFILE | while read LINE
